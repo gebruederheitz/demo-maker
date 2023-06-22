@@ -1,0 +1,59 @@
+---
+script:
+stylesheet:
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf8" />
+    <title>
+        {{ title }} | {{  projectName }}
+    </title>
+
+    {% if favicon %}
+    <link href="{{ favicon.small }}" rel="shortcut icon" type="image/x-icon"/>
+    <link href="{{ favicon.large }}" rel="apple-touch-icon"/>
+    {% endif %}
+
+    {%  if stylesheet %}
+    <link rel="stylesheet" href="/assets/{{ stylesheet }}" />
+    {% endif %}
+
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/nav.css" />
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <!-- Prism -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" integrity="sha256-zzHVEO0xOoVm0I6bT9v5SgpRs1cYNyvEvHXW/1yCgqU=" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="text-light">
+        <h2>{{ projectName }}</h2>
+    </header>
+
+    <nav>
+        {% if not skipNav %}
+            {% include _navTemplatePath %}
+        {% endif %}
+    </nav>
+
+    <main class="container">
+        <h1 class="text-primary">{{ heading if heading else title }}</h1>
+
+        <div class="content">
+            {{ content | safe }}
+        </div>
+    </main>
+
+    {% if script %}
+    <script src="/assets/{{ script }}"{{ ' type="module"' | safe if scriptModule }}{{ ' defer' if scriptDefer }}></script>
+    {% endif %}
+
+    {% if scriptNoModule %}
+    <script nomodule src="/assets/{{ scriptNoModule }}"></script>
+    {% endif %}
+</body>
+</html>

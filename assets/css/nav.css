@@ -1,0 +1,86 @@
+nav {
+    background-color: var(--gh-frame-bg);
+    padding-right: 1rem;
+}
+
+nav ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-left: 0;
+    position: sticky;
+    top: 0;
+}
+
+nav li {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+nav li a {
+    border: 1px solid var(--gh-frame-bg);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-width: 3px;
+    border-left: none;
+    background-color: #f4f5f5;
+    margin-bottom: -1px;
+    transition: margin 230ms ease, min-width 230ms ease;
+    text-decoration: none;
+    font-family: sans-serif;
+    color: #333;
+    font-variant: small-caps;
+    padding: .25rem .66rem;
+    text-align: center;
+    min-width: 100%;
+    width: 100%;
+}
+
+nav li:first-child a {
+    border-top: 0;
+}
+
+nav > ul > li:not([aria-current]) > a:hover {
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+    min-width: calc(100% + 1rem);
+}
+
+nav > ul > li[aria-current],
+nav > ul > li.active-parent {
+    margin-right: -1rem;
+    margin-left: -1rem;
+    margin-bottom: 16px;
+}
+
+nav > ul > li[aria-current]:not(:first-child),
+nav > ul > li.active-parent:not(:first-child) {
+    margin-top: 16px;
+}
+
+
+nav li[aria-current] a,
+nav li.active-parent a {
+    border-right: none;
+    background-color: #fff;
+    border-radius: 0;
+}
+
+nav li[aria-current] > a {
+    color: rgba(var(--bs-primary-rgb), 1);
+    text-shadow: 0 0 2px #ddd;
+}
+
+nav li ul.subnav {
+    flex: 0 0 80%;
+}
+
+nav li ul.subnav li a {
+    /*margin-top: -1px;*/
+}
+
+nav li ul.subnav li:last-child a {
+    border-bottom-left-radius: 10px;
+}

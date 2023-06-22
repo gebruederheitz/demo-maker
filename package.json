@@ -1,0 +1,20 @@
+{
+  "name": "@gebruederheitz/demo-maker",
+  "version": "0.0.0",
+  "bin": {
+    "build-docs": "run.sh"
+  },
+  "description": "Demos & documentation with 11ty",
+  "main": "index.js",
+  "scripts": {
+    "build": "eleventy --config=.eleventy.js --input=./src --output=../_demo",
+    "dev": "eleventy --config=.eleventy.js --serve --input=./src --output=../_demo",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "/gebruederheitz <support@gebruederheitz.de>",
+  "license": "UNLICENSED",
+  "peerDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0"
+  }
+}

@@ -1,0 +1,54 @@
+body {
+    --bs-primary-rgb: 0, 123, 118;
+    --bs-primary: rgb(var(--bs-primary-rgb));
+    --bs-link-hover-color: var(--bs-primary);
+    --gh-frame-bg: rgba(var(--bs-primary-rgb), .85);
+
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-column-gap: 2rem;
+    grid-template-rows: 4rem minmax(100vh, auto);
+}
+
+header {
+    background-color: var(--gh-frame-bg);
+    display: flex;
+    grid-column-start: span 2;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+header h2 {
+    margin: 0;
+}
+
+main {
+    padding-top: 2rem;
+}
+
+main h2 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    border-top: 3px solid rgba(var(--bs-primary-rgb), .6);
+    border-right: 2px solid rgba(var(--bs-primary-rgb), .6);
+    padding-top: 1rem;
+}
+
+.demo-end {
+    height: 2rem;
+    border-bottom: 3px solid rgba(var(--bs-primary-rgb), .6);
+    border-left: 2px solid rgba(var(--bs-primary-rgb), .6);
+    display: block;
+    margin-bottom: 6rem;
+    margin-top: 2rem;
+}
+
+main h3 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+section {
+    margin: 2rem 0;
+}

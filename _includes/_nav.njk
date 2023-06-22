@@ -1,0 +1,25 @@
+<ul>
+    {%- for demo in collections.demos -%}
+        {%- set isCurrentPage -%}{{ page.url == demo.url or null }}{%- endset -%}
+        {%- set isParentEntry -%}{{ tags and demo.fileSlug in tags or null }}{%- endset -%}
+        <li {% if isCurrentPage %} aria-current="page"{% endif %}{% if isParentEntry %} class="active-parent"{% endif %}>
+            <a href="{{ demo.url }}" {% if isCurrentPage %} aria-current="page"{% endif %}>
+                {{ demo.data.title }}
+            </a>
+
+            {%- if isCurrentPage or isParentEntry -%}
+                {%- if collections[demo.fileSlug].length -%}
+                    <ul class="subnav">
+                        {%- for subitem in collections[demo.fileSlug] -%}
+                            <li {% if page.url == subitem.url %} aria-current="page"{% endif %}>
+                                <a href="{{ subitem.url }}" {% if page.url == subitem.url %} aria-current="page"{% endif %}>
+                                    {{ subitem.data.title }}
+                                </a>
+                            </li>
+                        {%- endfor -%}
+                    </ul>
+                {%- endif -%}
+            {%- endif -%}
+        </li>
+    {%- endfor -%}
+</ul>

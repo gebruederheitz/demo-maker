@@ -1,6 +1,7 @@
 
-_layouts/_layout-base.njk
-_layouts/_nav.njk
-_includes/example.md
-_includes/assets/css/
+_includes/layouts/_layout-base.njk
+_includes/layouts/_nav.njk
+_includes/_example.md
+_includes/assets/css/nav.css
+_includes/assets/css/style.css
 .eleventy.js

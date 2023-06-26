@@ -1,6 +1,6 @@
 {
   "name": "@gebruederheitz/demo-maker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bin": {
     "build-docs": "run.sh",
     "serve-docs": "serve.sh"

@@ -41,8 +41,8 @@ module.exports = function(eleventyConfig) {
     //-- SET UP FAVICONS
     if (fs.existsSync('./_includes/assets/icon/favicon-32.png')) {
         eleventyConfig.addGlobalData('favicon', {
-            small: '_includes/assets/icon/favicon-32.png',
-            large: '_includes/assets/icon/favicon-256.png',
+            small: '/assets/icon/favicon-32.png',
+            large: '/assets/icon/favicon-256.png',
         });
     }
 

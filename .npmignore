@@ -5,5 +5,7 @@
 .stylelintrc
 .yarnrc.yaml
 
+.idea/
+
 demo/
 test/

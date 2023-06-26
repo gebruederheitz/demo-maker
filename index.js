@@ -1,27 +1,19 @@
 const path = require('path');
+const fs = require('fs');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
 
-const defaultConfig = {
-    appBasePath: '.',
-    projectName: '/gh Docs & Demos',
-}
-
-module.exports = function(eleventyConfig, config = defaultConfig) {
-    eleventyConfig.addLayoutAlias('basic', path.resolve(__dirname, '_includes/layout-base.njk'));
-
-    const appSourcePath = path.resolve('.', 'src');
-
-    eleventyConfig.addPassthroughCopy(path.resolve(appSourcePath, 'assets'));
+module.exports = function(eleventyConfig) {
+    //-- PASSTHROUGH COPY
     eleventyConfig.addPassthroughCopy({
-        [`${path.resolve(__dirname, 'assets/css')}`]: 'assets/css'
+        '_includes/assets': 'assets',
     });
     eleventyConfig.setServerPassthroughCopyBehavior('copy');
-    // eleventyConfig.setWatchThrottleWaitTime(500);
 
-
+    //-- SYNTAX HIGHLIGHTING
     eleventyConfig.addPlugin(syntaxHighlight);
 
+    //-- SORT BY NAVORDER IN "DEMO" COLLECTION
     eleventyConfig.addCollection('demos', function (collectionApi) {
         return collectionApi.getFilteredByTag('demo').sort((a, b) => {
             const bNavOrder = b.data.navOrder || 99;
@@ -30,45 +22,61 @@ module.exports = function(eleventyConfig, config = defaultConfig) {
         });
     });
 
-    eleventyConfig.addGlobalData('projectName', config.projectName);
-    eleventyConfig.addGlobalData('_navTemplatePath', path.resolve(__dirname, '_includes/_nav.njk'));
-    eleventyConfig.addGlobalData('favicon', {
-        small: path.resolve(appSourcePath, 'assets/icon/favicon-32.png'),
-        large: path.resolve(appSourcePath, 'assets/icon/favicon-256.png'),
-    });
+    //-- DEFINE PROJECT NAME
+    let projectName = 'Demo & Documentation';
+    try {
+        const rawPkg = fs.readFileSync('./package.json').toString('utf8');
+        const pkg = JSON.parse(rawPkg);
+        if (pkg.config?.projectName) {
+            projectName = pkg.config.projectName;
+        }
+    } catch (e) {
+      // noop
+    }
+    eleventyConfig.addGlobalData('projectName', projectName);
 
+    //-- DEFINE NAVIGATION TEMPLATE
+    eleventyConfig.addGlobalData('_navTemplatePath', 'layouts/_nav.njk');
+
+    //-- SET UP FAVICONS
+    if (fs.existsSync('./assets/icon/favicon-32.png')) {
+        eleventyConfig.addGlobalData('favicon', {
+            small: path.resolve(appSourcePath, 'assets/icon/favicon-32.png'),
+            large: path.resolve(appSourcePath, 'assets/icon/favicon-256.png'),
+        });
+    }
+
+    //-- "EXAMPLE" SHORTCODE (include_demo)
     const compileFile = EleventyRenderPlugin.File;
     let templateConfig = {};
-
     eleventyConfig.on('eleventy.config', (config) => {
         templateConfig = config;
     });
     eleventyConfig.addAsyncShortcode(
         'include_demo',
-        async function (partial, description) {
+        async function (partial, description, highlightLang) {
             const basePath = path.dirname(this.ctx.page.inputPath);
             const partialPath = path.resolve(basePath, partial);
-
-            console.log(templateConfig);
-
             const exampleTemplatePath = path.resolve(
                 __dirname,
                 '_includes/_example.md'
             );
 
-            const x = await compileFile(
+            const render = await compileFile(
                 exampleTemplatePath,
                 { templateConfig },
-                'md,njk'
+                'njk'
             );
-            return x({
+            return render({
                 ...this.ctx,
                 includePath: partialPath,
                 description,
+                highlightLang,
             });
         }
     );
 
+    //-- MARKDOWN WITH PRETTY TABLES
     const markdownIt = require('markdown-it');
     const options = {
         html: true,
@@ -82,7 +90,23 @@ module.exports = function(eleventyConfig, config = defaultConfig) {
     md.disable('code');
     eleventyConfig.setLibrary('md', md);
 
+    //-- LAYOUT ALIAS "basic"
+    eleventyConfig.addLayoutAlias('basic', 'layouts/_layout-base.njk');
+
+    //-- PER-PROJECT CUSTOM CONFIGURATION
+    let customReturns = {};
+    if (fs.existsSync('./.eleventy.custom.js')) {
+        customReturns = require('./.eleventy.custom.js')(eleventyConfig) || {};
+    }
+
     return {
         markdownTemplateEngine: 'njk',
+        dir: {
+            input: __dirname,
+            includes: '_includes',
+            // layouts: '_layouts',
+            output: path.resolve('../_demo'),
+        },
+        ...customReturns,
     };
 }

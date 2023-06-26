@@ -27,7 +27,11 @@ main {
     padding-top: 2rem;
 }
 
-main h2 {
+main .content {
+    padding-bottom: 4rem;
+}
+
+main .example-heading {
     margin-top: 3rem;
     margin-bottom: 1.5rem;
     border-top: 3px solid rgba(var(--bs-primary-rgb), .6);
@@ -42,6 +46,11 @@ main h2 {
     display: block;
     margin-bottom: 6rem;
     margin-top: 2rem;
+}
+
+main h2 {
+    margin-top: 6rem;
+    margin-bottom: 1.5rem;
 }
 
 main h3 {

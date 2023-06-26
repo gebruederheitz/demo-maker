@@ -1,8 +1,8 @@
-<h2>Example{{ ':' if description }}{{ description }}</h2>
+<h3 class="example-heading">Example{{ ':' if description }}{{ description }}</h3>
 
 {% include includePath %}
 
-```html
+```{% hightlightLang if highlightLang else "html" %}
 {% include includePath %}
 ```
 

@@ -8,7 +8,10 @@ module.exports = (async function() {
     const app = process.env.npm_config_root || process.env.npm_config_local_prefix;
     const lib = process.cwd();
 
-    console.log({ app, lib, cwd: process.cwd(), envPwd: process.env.PWD });
+    if (app === lib) {
+        // Only run script when installing as another package's dependency
+        return;
+    }
 
     console.log("Updating files...")
     const copies = [];

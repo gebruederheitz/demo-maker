@@ -39,10 +39,10 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addGlobalData('_navTemplatePath', 'layouts/_nav.njk');
 
     //-- SET UP FAVICONS
-    if (fs.existsSync('./assets/icon/favicon-32.png')) {
+    if (fs.existsSync('./_includes/assets/icon/favicon-32.png')) {
         eleventyConfig.addGlobalData('favicon', {
-            small: path.resolve(appSourcePath, 'assets/icon/favicon-32.png'),
-            large: path.resolve(appSourcePath, 'assets/icon/favicon-256.png'),
+            small: path.resolve(appSourcePath, '_includes/assets/icon/favicon-32.png'),
+            large: path.resolve(appSourcePath, '_includes/assets/icon/favicon-256.png'),
         });
     }
 

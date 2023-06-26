@@ -2,7 +2,7 @@
 
 {% include includePath %}
 
-```{% hightlightLang if highlightLang else "html" %}
+```{% highlightLang if highlightLang else "html" %}
 {% include includePath %}
 ```
 

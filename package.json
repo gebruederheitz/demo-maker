@@ -1,6 +1,6 @@
 {
   "name": "@gebruederheitz/demo-maker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "bin": {
     "build-docs": "run.sh",
     "serve-docs": "serve.sh"
@@ -8,7 +8,7 @@
   "description": "Demos & documentation with 11ty",
   "main": "index.js",
   "scripts": {
-    "postinstall": "postinstall.js"
+    "postinstall": "node postinstall.js"
   },
   "author": "/gebruederheitz <support@gebruederheitz.de>",
   "license": "UNLICENSED",

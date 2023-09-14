@@ -1,6 +1,7 @@
 ---
 script:
 stylesheet:
+extraScriptAttributes:
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +51,7 @@ stylesheet:
     </main>
 
     {% if script %}
-    <script src="/assets/{{ script }}"{{ ' type="module"' | safe if scriptModule }}{{ ' defer' if scriptDefer }}></script>
+    <script src="/assets/{{ script }}"{{ ' type="module"' | safe if scriptModule }}{{ ' defer' if scriptDefer }}{{ (' ' + extraScriptAttributes) | safe if extraScriptAttributes }}></script>
     {% endif %}
 
     {% if scriptNoModule %}

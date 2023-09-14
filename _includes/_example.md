@@ -1,3 +1,4 @@
+<section class="example">
 <h3 class="example-heading">Example{{ ':' if description }}{{ description }}</h3>
 
 {% include includePath %}
@@ -7,3 +8,4 @@
 ```
 
 <div class="demo-end"></div>
+</section>

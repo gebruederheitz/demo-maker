@@ -224,6 +224,7 @@ script: esm/timer.js
 scriptDefer: true
 scriptModule: true
 scriptNoModule: timer.js
+extraScriptAttributes: 'data-custom-attribute="test"'
 stylesheet: css/timer.css
 ```
 
@@ -231,8 +232,8 @@ stylesheet: css/timer.css
 <!-- ... -->
   <link rel="stylesheet" href="/assets/css/timer.css" />
 <!-- ... -->
-  <script src="/assets/esm/timer.js" type="module" defer></script>
-  <script nomodule src="/assets/timer.js"></script>
+  <script src="/assets/esm/timer.js" type="module" defer data-custom-attribute="test"></script>
+  <script nomodule src="/assets/timer.js" data-custom-attribute="test"></script>
 <!-- ... -->
 ```
 

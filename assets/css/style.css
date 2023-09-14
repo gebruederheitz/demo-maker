@@ -31,6 +31,31 @@ main .content {
     padding-bottom: 4rem;
 }
 
+main h2 {
+    margin-top: 6rem;
+    margin-bottom: 1.5rem;
+}
+
+main h3 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+section {
+    margin: 2rem 0;
+}
+
+section.example {
+    padding: 0 3rem;
+}
+
+section.example h3,
+section.example .demo-end {
+    margin-left: -3rem;
+    margin-right: -3rem;
+    width: calc(100% + 6rem);
+}
+
 main .example-heading {
     margin-top: 3rem;
     margin-bottom: 1.5rem;
@@ -46,18 +71,4 @@ main .example-heading {
     display: block;
     margin-bottom: 6rem;
     margin-top: 2rem;
-}
-
-main h2 {
-    margin-top: 6rem;
-    margin-bottom: 1.5rem;
-}
-
-main h3 {
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-}
-
-section {
-    margin: 2rem 0;
 }

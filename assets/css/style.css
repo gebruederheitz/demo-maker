@@ -7,14 +7,14 @@ body {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-column-gap: 2rem;
-    grid-template-rows: 4rem minmax(100vh, auto);
+    grid-template-rows: 7rem minmax(100vh, auto);
 }
 
 header {
     background-color: var(--gh-frame-bg);
     display: flex;
     grid-column-start: span 2;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 1rem;
 }
@@ -29,6 +29,17 @@ main {
 
 main .content {
     padding-bottom: 4rem;
+}
+
+main .content.content--limited {
+    margin: 0 auto;
+    max-width: 80ch;
+}
+
+main > h1 {
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 1rem;
 }
 
 main h2 {

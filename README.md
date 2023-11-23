@@ -292,7 +292,17 @@ The file `{{demo_root}}/_includes/assets/custom.css` will be automatically
 included by the base layout.
 
 
-### Favicons
+### Favicons & Header logo
 
 Put your favicons in `_includes/assets/icon/favicon-32.png` and `_includes/assets/icon/favicon-256.png`
 to have them automatically included through the base template.
+
+You can create a template at `_includes/components/_header-logo.njk` to add an
+element containing your library's logo:
+
+```nunjucks
+{# _includes/components/_header-logo.njk #}
+<a href="/" class="navbar-brand me-3 bg-light p-2 rounded rounded-circle">
+   <img src="/assets/icon/favicon-256.png" width="48" height="48" alt="My logo" />
+</a>
+```

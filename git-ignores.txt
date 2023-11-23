@@ -1,6 +1,7 @@
 
 _includes/layouts/_layout-base.njk
 _includes/layouts/_nav.njk
+_includes/components/_table-of-contents.njk
 _includes/_example.md
 _includes/assets/css/nav.css
 _includes/assets/css/style.css

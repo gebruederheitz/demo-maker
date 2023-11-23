@@ -1,0 +1,31 @@
+<div class="my-5 row row-cols-1 row-cols-md-2 g-4">
+    {%- for demo in collections.demos -%}
+        {%- set isCurrentPage -%}{{ page.url == demo.url or null }}{%- endset -%}
+        {%- if not isCurrentPage -%}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <a href="{{ demo.url }}" class="text-decoration-none link-dark">
+                            <h5 class="m-0">
+                                {{ demo.data.title }}
+                            </h5>
+                        </a>
+                    </div>
+                    {%- if collections[demo.fileSlug].length -%}
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                {%- for subitem in collections[demo.fileSlug] -%}
+                                    <li class="list-group-item">
+                                        <a href="{{ subitem.url }}" class="text-decoration-none">
+                                            {{ subitem.data.title }}
+                                        </a>
+                                    </li>
+                                {%- endfor -%}
+                            </ul>
+                        </div>
+                    {%- endif -%}
+                </div>
+            </div>
+        {%- endif -%}
+    {%- endfor -%}
+</div>

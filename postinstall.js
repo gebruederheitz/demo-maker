@@ -19,9 +19,11 @@ module.exports = (async function() {
 
     await fs.mkdir(`${app}/_includes/assets`, fsOptions);
     await fs.mkdir(`${app}/_includes/layouts`, fsOptions);
+    await fs.mkdir(`${app}/_includes/components`, fsOptions);
 
     copies.push(fs.copyFile(`${lib}/index.js`, `${app}/.eleventy.js`));
     copies.push(fs.copyFile(`${lib}/_includes/_layout-base.njk`, `${app}/_includes/layouts/_layout-base.njk`));
+    copies.push(fs.copyFile(`${lib}/_includes/_table-of-contents.njk`, `${app}/_includes/components/_table-of-contents.njk`));
     copies.push(fs.copyFile(`${lib}/_includes/_nav.njk`, `${app}/_includes/layouts/_nav.njk`));
     copies.push(fs.copyFile(`${lib}/_includes/_example.md`, `${app}/_includes/_example.md`));
     copies.push(fs.cp(`${lib}/assets/css`, `${app}/_includes/assets/css`, fsOptions));

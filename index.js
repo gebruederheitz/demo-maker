@@ -13,14 +13,18 @@ module.exports = function(eleventyConfig) {
     //-- SYNTAX HIGHLIGHTING
     eleventyConfig.addPlugin(syntaxHighlight);
 
-    //-- SORT BY NAVORDER IN "DEMO" COLLECTION
-    eleventyConfig.addCollection('demos', function (collectionApi) {
-        return collectionApi.getFilteredByTag('demo').sort((a, b) => {
-            const bNavOrder = b.data.navOrder || 99;
-            const aNavOrder = a.data.navOrder || 99;
-            return aNavOrder - bNavOrder;
+    function sortedCollection(collectionName, collectionTag) {
+        eleventyConfig.addCollection(collectionName, function (collectionApi) {
+            return collectionApi.getFilteredByTag(collectionTag).sort((a, b) => {
+                const bNavOrder = b.data.navOrder || 99;
+                const aNavOrder = a.data.navOrder || 99;
+                return aNavOrder - bNavOrder;
+            });
         });
-    });
+    }
+
+    //-- SORT BY NAVORDER IN "DEMO" COLLECTION
+    sortedCollection('demos', 'demo');
 
     //-- DEFINE PROJECT NAME
     let projectName = 'Demo & Documentation';
@@ -99,7 +103,9 @@ module.exports = function(eleventyConfig) {
     //-- PER-PROJECT CUSTOM CONFIGURATION
     let customReturns = {};
     if (fs.existsSync('./.eleventy.custom.js')) {
-        customReturns = require('./.eleventy.custom.js')(eleventyConfig) || {};
+        customReturns = require('./.eleventy.custom.js')(eleventyConfig, {
+            sortedCollection,
+        }) || {};
     }
 
     return {

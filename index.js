@@ -38,6 +38,9 @@ module.exports = function(eleventyConfig) {
     //-- DEFINE NAVIGATION TEMPLATE
     eleventyConfig.addGlobalData('_navTemplatePath', 'layouts/_nav.njk');
 
+    //-- SET WHETHER CONTENT WIDTH SHOULD BE LIMITED
+    eleventyConfig.addGlobalData('contentLimited', false);
+
     //-- SET UP FAVICONS
     if (fs.existsSync('./_includes/assets/icon/favicon-32.png')) {
         eleventyConfig.addGlobalData('favicon', {

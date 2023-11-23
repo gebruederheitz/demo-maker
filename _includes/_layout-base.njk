@@ -45,7 +45,7 @@ extraScriptAttributes:
     <main class="container">
         <h1 class="text-primary">{{ heading if heading else title }}</h1>
 
-        <div class="content">
+        <div class="content{{ ' content--limited' if contentLimited }}">
             {{ content | safe }}
         </div>
     </main>

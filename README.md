@@ -130,6 +130,10 @@ demo/
   |    |     |-- index.md (tags: awesome-feature)
 ```
 
+You can add this type of custom sorting to arbitrary collections using 
+[the utility function](#utilities--custom-sorting-for-arbitrary-collections) – 
+that way you can also sort the sub-navigation entries.
+
 
 ### Example Demonstrations (`include_demo` shortcode)
 
@@ -248,6 +252,39 @@ scriptDefer: true
 <!-- ... -->
 ```
 
+### Utilities & Custom sorting for arbitrary collections
+
+Your `.eleventy.custom.js` gets called with an additional object parameter 
+containing utilities (currently just the one):
+
+```js
+module.exports = function (eleventyConfig, utils) {
+   // Add custom sorting by "navOrder" frontmatter attriubte to all items tagged
+   // "mytagname":
+   utils.sortedCollection('mycollection', 'mytagname');
+}
+```
+
+
+### Limited content width
+
+With a simple utility you can limit the content's width to 80ch and center it
+within `<main>`:
+
+```js
+// .eleventy.custom.js
+eleventyConfig.addGlobalData('contentLimited', true);
+```
+
+
+### Table of contents
+
+There's a template based on the site navigation that allows you to display a
+hierarchical table of contents:
+
+```nunjucks
+{% include '_includes/components/_table-of-contents.njk' %}
+```
 
 ### Custom styles
 

@@ -1,0 +1,11 @@
+<section class="example">
+    <h3 class="example-heading">Example{{ ': ' if description }}{{ description }}</h3>
+
+    {% include includePath %}
+
+    {% highlight highlightlang if highlightlang else "html" %}
+        {% include includePath %}
+    {% endhighlight %}
+
+    <div class="demo-end"></div>
+</section>

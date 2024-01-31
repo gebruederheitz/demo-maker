@@ -66,7 +66,7 @@ module.exports = function(eleventyConfig) {
             const partialPath = path.resolve(basePath, partial);
             const exampleTemplatePath = path.resolve(
                 __dirname,
-                '_includes/_example.md'
+                '_includes/_example.njk'
             );
 
             const render = await compileFile(

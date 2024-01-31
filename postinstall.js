@@ -25,7 +25,7 @@ module.exports = (async function() {
     copies.push(fs.copyFile(`${lib}/_includes/_layout-base.njk`, `${app}/_includes/layouts/_layout-base.njk`));
     copies.push(fs.copyFile(`${lib}/_includes/_table-of-contents.njk`, `${app}/_includes/components/_table-of-contents.njk`));
     copies.push(fs.copyFile(`${lib}/_includes/_nav.njk`, `${app}/_includes/layouts/_nav.njk`));
-    copies.push(fs.copyFile(`${lib}/_includes/_example.md`, `${app}/_includes/_example.njk`));
+    copies.push(fs.copyFile(`${lib}/_includes/_example.njk`, `${app}/_includes/_example.njk`));
     copies.push(fs.cp(`${lib}/assets/css`, `${app}/_includes/assets/css`, fsOptions));
 
     await Promise.all(copies);

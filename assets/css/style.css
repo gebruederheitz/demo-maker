@@ -60,7 +60,7 @@ section.example {
     padding: 0 3rem;
 }
 
-section.example h3,
+section.example > h3,
 section.example .demo-end {
     margin-left: -3rem;
     margin-right: -3rem;

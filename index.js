@@ -4,7 +4,7 @@ import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
 import { EleventyRenderPlugin } from '@11ty/eleventy';
 import markdownIt from 'markdown-it';
 
-export default function(eleventyConfig) {
+export default async function(eleventyConfig) {
     //-- PASSTHROUGH COPY
     eleventyConfig.addPassthroughCopy({
         '_includes/assets': 'assets',
@@ -103,9 +103,8 @@ export default function(eleventyConfig) {
     //-- PER-PROJECT CUSTOM CONFIGURATION
     let customReturns = {};
     if (fs.existsSync('./.eleventy.custom.js')) {
-        customReturns = require('./.eleventy.custom.js')(eleventyConfig, {
-            sortedCollection,
-        }) || {};
+        const customConfigBuilder = await import('./.eleventy.custom.js');
+        customReturns = customConfigBuilder(eleventyConfig, {sortedCollection,}) || {};
     }
 
     return {

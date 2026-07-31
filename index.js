@@ -66,7 +66,7 @@ export default async function(eleventyConfig) {
             const basePath = path.dirname(this.ctx.page.inputPath);
             const partialPath = path.resolve(basePath, partial);
             const exampleTemplatePath = path.resolve(
-                __dirname,
+                import.meta.dir,
                 '_includes/_example.njk'
             );
 

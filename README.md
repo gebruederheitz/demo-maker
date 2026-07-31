@@ -18,6 +18,18 @@ npm init
 npm install @gebruederheitz/demo-maker
 ```
 
+Since v2.0.0 this package ships ES modules only: the `.eleventy.js` config
+copied into your demo directory (and any `.eleventy.custom.js` you write) uses
+`import`/`export` syntax, so that directory's `package.json` must declare it:
+
+```json
+// {{your-project-root}}/demo/package.json
+{
+  // ...
+  "type": "module"
+}
+```
+
 Optionally define a project name that will be used in the generated site's
 titles in the package.json:
 

@@ -66,7 +66,7 @@ export default async function(eleventyConfig) {
             const basePath = path.dirname(this.ctx.page.inputPath);
             const partialPath = path.resolve(basePath, partial);
             const exampleTemplatePath = path.resolve(
-                import.meta.dir,
+                import.meta.dirname,
                 '_includes/_example.njk'
             );
 
@@ -110,7 +110,7 @@ export default async function(eleventyConfig) {
     return {
         markdownTemplateEngine: 'njk',
         dir: {
-            input: import.meta.dir,
+            input: import.meta.dirname,
             includes: '_includes',
             // layouts: '_layouts',
             output: path.resolve('../_demo'),

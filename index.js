@@ -103,7 +103,7 @@ export default async function(eleventyConfig) {
     //-- PER-PROJECT CUSTOM CONFIGURATION
     let customReturns = {};
     if (fs.existsSync('./.eleventy.custom.js')) {
-        const customConfigBuilder = await import('./.eleventy.custom.js');
+        const {default: customConfigBuilder} = await import('./.eleventy.custom.js');
         customReturns = customConfigBuilder(eleventyConfig, {sortedCollection,}) || {};
     }
 

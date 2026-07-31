@@ -6,15 +6,20 @@
     "serve-docs": "serve.sh"
   },
   "description": "Demos & documentation with 11ty",
+  "type": "module",
   "main": "index.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "postinstall": "node postinstall.js"
   },
   "author": "/gebruederheitz <support@gebruederheitz.de>",
   "license": "UNLICENSED",
   "dependencies": {
-    "@11ty/eleventy": "^2.0.1",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
-    "@gebruederheitz/plaintextlego": "^1.2.2"
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "@gebruederheitz/plaintextlego": "^1.3.2",
+    "markdown-it": "^15.0.0"
   }
 }

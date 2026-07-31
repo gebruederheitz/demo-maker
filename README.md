@@ -209,7 +209,7 @@ project's scripts and styles:
 
 ```js
 // .eleventy.custom.js
-module.exports = function (eleventyConfig) {
+export default function (eleventyConfig) {
     // We're copying the built scripts from the main project into `_includes/assets/`
     eleventyConfig.addPassthroughCopy({
         '../modules/timer/dist/*.js': '_includes/assets',
@@ -258,7 +258,7 @@ Your `.eleventy.custom.js` gets called with an additional object parameter
 containing utilities (currently just the one):
 
 ```js
-module.exports = function (eleventyConfig, utils) {
+export default function (eleventyConfig, utils) {
    // Add custom sorting by "navOrder" frontmatter attriubte to all items tagged
    // "mytagname":
    utils.sortedCollection('mycollection', 'mytagname');

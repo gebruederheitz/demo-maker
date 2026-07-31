@@ -1,10 +1,10 @@
 #! /usr/bin/env node
-const { PlainTextLego } = require('@gebruederheitz/plaintextlego');
-const path = require('path');
-const fs = require('fs/promises');
-const { existsSync } = require('fs');
+import { PlainTextLego } from '@gebruederheitz/plaintextlego';
+import path from 'node:path';
+import fs from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 
-module.exports = (async function() {
+export default (async function() {
     const app = process.env.npm_config_root || process.env.npm_config_local_prefix;
     const lib = process.cwd();
 
@@ -39,12 +39,6 @@ module.exports = (async function() {
     const gitIgnorePath = path.resolve(app, './.gitignore');
     if (!existsSync(gitIgnorePath)) {
         await fs.writeFile(gitIgnorePath, '');
-    }
-    // Until v1.2.0 the demo template was a markdown file
-    // In higher releases this condition can be removed, as the references file
-    // will be unlikely to exist – and will pop up in people's version control.
-    if (existsSync(`${app}/_includes/_example.md`)) {
-        await fs.unlink(`${app}/_includes/_example.md`);
     }
     const ptl = new PlainTextLego(gitIgnorePath);
     await ptl.run({

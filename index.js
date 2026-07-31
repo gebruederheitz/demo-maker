@@ -1,9 +1,10 @@
-const path = require('path');
-const fs = require('fs');
-const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
-const { EleventyRenderPlugin } = require('@11ty/eleventy');
+import path from 'node:path';
+import fs from 'node:fs';
+import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
+import { EleventyRenderPlugin } from '@11ty/eleventy';
+import markdownIt from 'markdown-it';
 
-module.exports = function(eleventyConfig) {
+export default function(eleventyConfig) {
     //-- PASSTHROUGH COPY
     eleventyConfig.addPassthroughCopy({
         '_includes/assets': 'assets',
@@ -84,7 +85,6 @@ module.exports = function(eleventyConfig) {
     );
 
     //-- MARKDOWN WITH PRETTY TABLES
-    const markdownIt = require('markdown-it');
     const options = {
         html: true,
         breaks: false,
@@ -111,7 +111,7 @@ module.exports = function(eleventyConfig) {
     return {
         markdownTemplateEngine: 'njk',
         dir: {
-            input: __dirname,
+            input: import.meta.dir,
             includes: '_includes',
             // layouts: '_layouts',
             output: path.resolve('../_demo'),
